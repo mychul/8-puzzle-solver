@@ -10,12 +10,14 @@ if choice == 1:
     choice = int(choice)
     if choice == 1: 
         pad = [[1,2,0],[4,5,3],[7,8,6]]
+        # for debug 
         # for r in pad:
         #     for c in r:
         #         print(c,end = " ")
         #     print()
     elif choice == 2:
         pad = [[8,7,1],[6,0,2],[5,4,3]]
+        # for debug 
         # for r in pad:
         #     for c in r:
         #         print(c,end = " ")
@@ -44,6 +46,7 @@ elif choice == 2:
         pad[i][0] = x
         pad[i][1] = y
         pad[i][2] = z
+    # for debug 
     # for r in pad:
     #     for c in r:
     #         print(c,end = " ")
