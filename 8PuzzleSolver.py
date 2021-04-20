@@ -49,10 +49,10 @@ elif choice == 2:
         pad[i][2] = z
 
 initial_problem = problems(pad) 
-initial_problem.printState()
+#initial_problem.printState()
 testNode= node(pad)
 testNode.spawnChild()
-#testNode.printChildren()
+testNode.printChildren()
 
     # for debug 
     # for r in pad:
