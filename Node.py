@@ -1,4 +1,4 @@
-from problems import problems
+from Problems import problems
 
 class node(problems):
     def __init__(self):

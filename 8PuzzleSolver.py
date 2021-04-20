@@ -1,4 +1,5 @@
 from array import *
+from Problems import *
 
 pad = [0,0,0]
 
@@ -46,6 +47,9 @@ elif choice == 2:
         pad[i][0] = x
         pad[i][1] = y
         pad[i][2] = z
+
+initial_problem = problems(pad) 
+initial_problem.printState()
     # for debug 
     # for r in pad:
     #     for c in r:

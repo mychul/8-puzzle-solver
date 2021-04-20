@@ -42,3 +42,8 @@ class problems:
             return True
         else:
             return False
+    def printState(self):  
+        for r in self.current_state:
+            for c in r:
+                print(c,end = " ")
+            print()
