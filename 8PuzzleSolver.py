@@ -1,5 +1,5 @@
 from array import *
-
+from problems import problems
 pad = [0,0,0]
 
 print("Welcome to 861126014 & 861199635 8 puzzle solver.")    
