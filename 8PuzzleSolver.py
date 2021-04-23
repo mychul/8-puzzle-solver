@@ -47,7 +47,9 @@ elif choice == 2:
         pad[i][0] = x
         pad[i][1] = y
         pad[i][2] = z
-
+choice = input("/nEnter your choice of algorithm\n1 - Uniform Cost Search\n2- A* with the Misplaced Tile heuristic.\n3 - A* with the Eucledian distance heuristic.\n\nChoice: ")
+print("")
+print("Expanding state: ")
 initial_problem = problems(pad) 
 #initial_problem.printState()
 testNode= node(pad)
