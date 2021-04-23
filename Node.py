@@ -1,4 +1,5 @@
 from Problems import problems
+import copy
 
 class node(problems):
     def __init__(self,state):
@@ -22,9 +23,10 @@ class node(problems):
         c = pos[1]
         if pos[2]==1:
             #spawnleft
-            dummy = self.current_state[r][c-1]
-            new_state = self.current_state
+            dummy = self.current_state[r][c-1] 
+            new_state = copy.deepcopy(self.current_state)
             new_state[r][c-1] = 0
+            #self.printState() #Debug
             new_state[r][c] = dummy
             #DEBUG BLOCK
             # for a in new_state:
@@ -42,7 +44,7 @@ class node(problems):
         if pos[3]==1:
             #spawnRight
             dummy = self.current_state[r][c+1]
-            new_state = self.current_state
+            new_state = copy.deepcopy(self.current_state)
             new_state[r][c+1]= 0
             new_state[r][c] = dummy
             self.rightChild = node(new_state)
@@ -52,7 +54,7 @@ class node(problems):
         if pos[4]==1:
             #spawnAbove:
             dummy = self.current_state[r-1][c]
-            new_state = self.current_state
+            new_state = copy.deepcopy(self.current_state)
             new_state[r-1][c]= 0
             new_state[r][c] = dummy
             self.aboveChild= node(new_state)
@@ -64,8 +66,8 @@ class node(problems):
             
             dummy = self.current_state[r+1][c]
             #print(dummy)    #debug
-           
-            new_state = self.current_state
+            #self.printState()
+            new_state = copy.deepcopy(self.current_state)
             new_state[r+1][c]= 0
             new_state[r][c] = dummy
             #DEBUG BLOCK
