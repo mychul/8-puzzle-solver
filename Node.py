@@ -9,10 +9,10 @@ class node(problems):
         self.belowChild = None
         self.rightChild = None
         self.leftChild = None
+        self.spawnMethod= None
     def setParent(self,p):
         #DEBGU
         #print("DEBUGU")
-        print("")
         self.parent = p
         #DEBUG
         #print("DEBUGA")
@@ -38,6 +38,7 @@ class node(problems):
             #self.printState() #Debug 
             self.leftChild.setParent(self)  ###################FIX THIS
             #self.printState() #Debug 
+            self.leftChild.spawnMethod="Swap Blank Left"
         new_state=None
         #self.printState() #Debug 
         if pos[3]==1:
@@ -48,6 +49,7 @@ class node(problems):
             new_state[r][c] = dummy
             self.rightChild = node(new_state)
             self.rightChild.setParent(self)
+            self.rightChild.spawnMethod="Swap Blank Right"
         new_state = None
         if pos[4]==1:
             #spawnAbove:
@@ -57,6 +59,7 @@ class node(problems):
             new_state[r][c] = dummy
             self.aboveChild= node(new_state)
             self.aboveChild.setParent(self)
+            self.aboveChild.spawnMethod="Swap Blank Up"
         new_state=None
         if pos[5]==1:
             #spawnBelow:
@@ -73,8 +76,9 @@ class node(problems):
             #        print(b,end = " ")
             #    print()
             self.belowChild= node(new_state)
-            self.belowChild.setParent(self) 
-            self.belowChild.printState()   #debug         
+            self.belowChild.setParent(self)
+            self.belowChild.spawnMethod="Swap Blank Down" 
+            #self.belowChild.printState()   #debug         
         return
     def printChildren(self):
         if self.leftChild is not None:
