@@ -1,6 +1,7 @@
 from array import *
 from Problems import *
 from Node import *
+from Misplaced import *
 pad = [0,0,0]
 
 print("Welcome to 861126014 & 861199635 8 puzzle solver.")    
@@ -50,8 +51,8 @@ elif choice == 2:
 
 initial_problem = problems(pad) 
 initial_problem.printState()
-testNode= node(pad)
-testNode.spawnChild()
+#testNode= node(pad)
+#testNode.spawnChild()
 #testNode.printChildren()
 
     # for debug 
