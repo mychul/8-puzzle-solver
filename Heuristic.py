@@ -3,11 +3,12 @@ from Node import *
 class Heuristic:
 
     def __init__(self,node):
-        start = node
-        #explored={copy.deepcopy(start.current_state)}
-        #explored = {tuple(i) for i in start.current_state}
-        expanded=0
-        max_size=0
+        self.cur = node
+        self.explored = set(node.convertState())
+        self.expanded=0
+        self.max_size=0
+        if self.cur.checkGoal():
+            self.goalReached()
 
     #helper function to help print steps in between    
     def expand(self,g,h,node):
@@ -39,10 +40,13 @@ class Heuristic:
 
     #Results routine: Print path, print number of nodes expanded, print max nodes
     def goalReached(self):
-        path = self.traceSolution()
-        path.reverse()
-        self.expanded = len(path)
-        for x in path:
-            print (path[x])
+        path = self.traceSolution(self.cur)
+        if path is not None:
+            path.reverse()
+            self.expanded = len(path)
+            for x in path:
+                print (path[x])
+        elif path is None:
+            print ("The given state was the goal state.")
         print ("To solve this problem the serach algorithm expanded " + self.expanded + " nodes.")
         print ("The maximum number of nodes at any one time was: " + self.max_size)

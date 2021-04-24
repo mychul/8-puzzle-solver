@@ -93,3 +93,5 @@ class node(problems):
         if self.belowChild is not None:
             print("Below Child:")
             self.belowChild.printState()
+
+    

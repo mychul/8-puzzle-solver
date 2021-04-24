@@ -61,3 +61,10 @@ class problems:
             for c in r:
                 print(c,end = " ")
             print()
+    #due to lists being a unhashable type we need to convert our lists of lists into a tuple in order to store within our sets
+    def convertState(self):
+        flatList=[]
+        for r in self.current_state:
+            for c in r:
+                flatList.append(c)
+        return tuple(flatList)

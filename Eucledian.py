@@ -12,6 +12,7 @@ class Eucledian(Heuristic):
         #node.current_state[0][0]
         for row in node.current_state:
             for c in row:
-                sum = sum + (self.start.goal[row][c] - node.current_state[row][c])^2
+                pass
+                #sum = sum + (self.cur.goal[c]] - node.current_state[c])^2
         distance = math.sqrt(sum)
         return distance
