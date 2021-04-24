@@ -1,6 +1,6 @@
 #A* with the misplaced tile heuristics 
 from Heuristic import *
 class Misplaced(Heuristic):
-    def __init__(self,problem):
-        super().__init__(problem)
+    def __init__(self,node):
+        super().__init__(node)
 

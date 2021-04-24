@@ -2,7 +2,7 @@
 
 from Heuristic import *
 class Eucledian(Heurisitic):
-    def __init__(self,problem):
-        super().__init__(problem)
+    def __init__(self,node):
+        super().__init__(node)
 
     

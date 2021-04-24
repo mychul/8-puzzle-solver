@@ -1,5 +1,5 @@
 #Uniform Cost Search
 from Heuristic import *
 class Uniform(Heurisitic):
-    def __init__(self,problem):
-        super().__init__(problem)
+    def __init__(self,node):
+        super().__init__(node)
