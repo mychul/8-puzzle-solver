@@ -2,6 +2,7 @@ from array import *
 from Problems import *
 from Node import *
 from Misplaced import *
+from Eucledian import *
 pad = [0,0,0]
 
 print("Welcome to 861126014 & 861199635 8 puzzle solver.")    
@@ -49,10 +50,13 @@ elif choice == 2:
         pad[i][1] = y
         pad[i][2] = z
 choice = input("/nEnter your choice of algorithm\n1 - Uniform Cost Search\n2- A* with the Misplaced Tile heuristic.\n3 - A* with the Eucledian distance heuristic.\n\nChoice: ")
-print("")
-print("Expanding state: ")
-initial_problem = problems(pad) 
-initial_problem.printState()
+choice = int(choice)
+inital_node = node(pad)
+if(choice == 3):
+    print(eucledian_distance(inital_node))
+
+#initial_problem = problems(pad) 
+#initial_problem.printState()
 #testNode= node(pad)
 #testNode.spawnChild()
 #testNode.printChildren()
