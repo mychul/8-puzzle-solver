@@ -1,6 +1,6 @@
 #Base class for heuristic searches
 from Node import *
-class Heurisitic:
+class Heuristic:
 
     def __init__(self,node):
         start = node
