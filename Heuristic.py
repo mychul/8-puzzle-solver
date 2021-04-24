@@ -4,7 +4,8 @@ class Heuristic:
 
     def __init__(self,node):
         start = node
-        explored={copy.deepcopy(start.current_state)}
+        #explored={copy.deepcopy(start.current_state)}
+        #explored = {tuple(i) for i in start.current_state}
         expanded=0
         max_size=0
 
