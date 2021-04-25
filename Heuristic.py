@@ -10,6 +10,7 @@ class Heuristic:
         self.max_size=0
         self.nodeCounter=0
         self.frontier = queue.PriorityQueue()
+        self.goalFlag=False
         if self.cur.checkGoal():
             self.goalReached()
 
@@ -21,7 +22,8 @@ class Heuristic:
 
     #helper function to check if node up for consideration has already been previously explored or not
     def checkSet(self):
-        if self.cur.current_state in self.explored:
+        #tuple(F,convertstate())
+        if self.cur.convertState() in self.explored:
             return True
         else:
             #if it has not been add the node to the explored set and return false in order to consider it
