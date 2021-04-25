@@ -4,23 +4,26 @@ class Heuristic:
 
     def __init__(self,node):
         self.cur = node
-        self.explored = set(node.convertState())
+        self.explored = {}
         self.expanded=0
         self.max_size=0
+        self.g = 0
         if self.cur.checkGoal():
             self.goalReached()
 
     #helper function to help print steps in between    
-    def expand(self,g,h,node):
-        print("The best state to expand with g(n) = " + g + " and h(n) = " + h + " is...")
-        node.printState()
+    def expand(self,h):
+        print("The best state to expand with g(n) = " + self.g + " and h(n) = " + h + " is...")
+        self.cur.printState()
         print("Expanding this node...")
 
     #helper function to check if node up for consideration has already been previously explored or not
-    def checkSet(self,node):
-        if node.current_state in self.explored:
+    def checkSet(self):
+        if self.cur.current_state in self.explored:
             return True
         else:
+            #if it has not been add the node to the explored set and return false in order to consider it
+            self.explored.add(self.cur.convertState())
             return False
     #helper function to display max amount of nodes
     def checkMax(self,curr_size):
@@ -29,12 +32,11 @@ class Heuristic:
         return
 
     #helper function that traces route to solution node and saves into a list        
-    def traceSolution(self,node):
-        cur = node
+    def traceSolution(self):
         solution=[]
-        while (cur.spawnMethond is not None):
+        while (self.cur.spawnMethond is not None):
             solution.add(node.spawnMethod)
-            cur = cur.parent
+            self.cur = self.cur.parent
 
         return solution
 
