@@ -1,5 +1,6 @@
 #Base class for heuristic searches
 from Node import *
+import queue
 class Heuristic:
 
     def __init__(self,node):
@@ -7,13 +8,14 @@ class Heuristic:
         self.explored = {}
         self.expanded=0
         self.max_size=0
-        self.g = 0
+        self.nodeCounter=0
+        self.frontier = queue.PriorityQueue()
         if self.cur.checkGoal():
             self.goalReached()
 
     #helper function to help print steps in between    
-    def expand(self,h):
-        print("The best state to expand with g(n) = " + self.g + " and h(n) = " + h + " is...")
+    def expand(self,g,h):
+        print("The best state to expand with g(n) = " + g + " and h(n) = " + h + " is...")
         self.cur.printState()
         print("Expanding this node...")
 
