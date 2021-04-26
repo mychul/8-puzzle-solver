@@ -11,6 +11,9 @@ class Heuristic:
         self.nodeCounter=0
         self.frontier = queue.PriorityQueue()
         self.goalFlag=False
+        self.f = 0
+        self.explored_pairs = {}
+        
         if self.cur.checkGoal():
             self.goalReached()
 
@@ -20,14 +23,30 @@ class Heuristic:
         self.cur.printState()
         print("Expanding this node...")
 
+    def checkFrontier(self,node):
+        if node.convertState() in self.frontier_dict.keys():
+            return (True, self.frontier_dict.get(node.converState()))
+        else:
+            return (False,-1)
+
     #helper function to check if node up for consideration has already been previously explored or not
-    def checkSet(self):
-        #tuple(F,convertstate())
-        if self.cur.convertState() in self.explored:
-            return True
+    def checkSet(self,node):
+        
+        #dict(nodestate:f)
+        #explored set(nodestate)
+        #check for collision within the set
+        #lookup the pairing of nodestate and f
+        #return f
+        #><=
+
+        #checking = {self.f,node.convertState()}
+        if node.convertState() in self.explored:
+            if self.f in explored_pairs and node.convertState() == explored_pairs.get(self.f):
+                return True
         else:
             #if it has not been add the node to the explored set and return false in order to consider it
-            self.explored.add(self.cur.convertState())
+            self.explored.add(node.convertState())
+            self.explored_pairs.update({self.f:node.convertState()})
             return False
     #helper function to display max amount of nodes
     def checkMax(self,curr_size):
