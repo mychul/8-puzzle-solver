@@ -12,8 +12,8 @@ class Heuristic:
         self.frontier = queue.PriorityQueue()
         self.goalFlag=False
         self.f = 0
-        self.explored_pairs = {}
-        
+        self.explored_list = []
+        self.frontier_list=[]
         if self.cur.checkGoal():
             self.goalReached()
 
@@ -24,30 +24,29 @@ class Heuristic:
         print("Expanding this node...")
 
     def checkFrontier(self,node):
-        if node.convertState() in self.frontier_dict.keys():
-            return (True, self.frontier_dict.get(node.converState()))
-        else:
-            return (False,-1)
+        for x in self.frontier_list:
+            if node.convertState() == x[0]:
+                if self.f > x[1]:
+                    return True
+        self.frontier_list.append((node.convertState(),self.f))
+        return False
 
     #helper function to check if node up for consideration has already been previously explored or not
     def checkSet(self,node):
+        if node.convertState in self.explored:
+            for x in self.explored_list:
+                if node.convertState() == x[0]:
+                    if self.f > x[1]:
+                        return True
         
-        #dict(nodestate:f)
-        #explored set(nodestate)
-        #check for collision within the set
-        #lookup the pairing of nodestate and f
-        #return f
-        #><=
+        return False
+    def addExplored(self,node):
+        self.explored_list.append((node.convertState(),self.f))
+        self.explored.add(node.convertState())
+    
+    def addFrontier(self,node):
+        self.frontier.put((self.f, self.nodeCounter, node))
 
-        #checking = {self.f,node.convertState()}
-        if node.convertState() in self.explored:
-            if self.f in explored_pairs and node.convertState() == explored_pairs.get(self.f):
-                return True
-        else:
-            #if it has not been add the node to the explored set and return false in order to consider it
-            self.explored.add(node.convertState())
-            self.explored_pairs.update({self.f:node.convertState()})
-            return False
     #helper function to display max amount of nodes
     def checkMax(self,curr_size):
         if len(curr_size) > self.max_size:
