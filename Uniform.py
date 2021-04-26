@@ -58,7 +58,6 @@ class Uniform(Heuristic):
                     break
                 #increment global node counter to guarantee FIFO during collision within priority
                 self.nodeCounter = self.nodeCounter + 1
-                #calculate h(n) value associated with node using A* euclidian heuristic
                 h = 0
                 #add h and g to f
                 self.f = h + self.cur.leftChild.g
