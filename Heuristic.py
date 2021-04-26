@@ -58,7 +58,7 @@ class Heuristic:
     def traceSolution(self):
         solution=[]
         while (self.cur.spawnMethod is not None):
-            solution.add(node.spawnMethod)
+            solution.append(self.cur.spawnMethod)
             self.cur = self.cur.parent
 
         return solution
@@ -70,7 +70,7 @@ class Heuristic:
             path.reverse()
             self.expanded = len(path)
             for x in path:
-                print (path[x])
+                print (x)
         elif path is None:
             print ("The given state was the goal state.")
         print ("To solve this problem the search algorithm expanded " + str(self.expanded) + " nodes.")

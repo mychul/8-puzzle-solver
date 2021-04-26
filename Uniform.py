@@ -39,7 +39,8 @@ class Uniform(Heuristic):
 
             #get a node from frontier
             self.cur = self.frontier.get()[2]
-            self.frontier_list.remove((self.cur.convertState(),self.f))
+            if (self.cur.convertState(),self.f) in self.frontier_list:
+                self.frontier_list.remove((self.cur.convertState(),self.f))
             #run helper function to generate all possible children
             self.cur.spawnChild()
             #check if left child was generated
@@ -89,7 +90,7 @@ class Uniform(Heuristic):
                     break
                 self.nodeCounter = self.nodeCounter + 1
                 h = 0
-                self.f = h + self.cur.above.g
+                self.f = h + self.cur.aboveChild.g
                 if self.checkSet(self.cur.aboveChild) is False:
                     if self.checkFrontier(self.cur.aboveChild) is False:
                         self.addFrontier(self.cur.aboveChild)
@@ -112,7 +113,7 @@ class Uniform(Heuristic):
             self.addExplored(self.cur) 
 
         #if we have found the solution escape early
-        if(self.goalflag):
+        if(self.goalFlag):
             return self.goalFlag
         #if we have explored all there is within the frontier return false
         return self.goalFlag

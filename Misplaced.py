@@ -72,7 +72,7 @@ class Misplaced(Heuristic):
                     break
                 self.nodeCounter = self.nodeCounter + 1
                 h = self.misplace_distance(self.cur.aboveChild)
-                self.f = h + self.cur.above.g
+                self.f = self.cur.aboveChild.g
                 if self.checkSet(self.cur.aboveChild) is False:
                     if self.checkFrontier(self.cur.aboveChild) is False:
                         self.addFrontier(self.cur.aboveChild)
@@ -95,7 +95,7 @@ class Misplaced(Heuristic):
             self.addExplored(self.cur) 
 
         #if we have found the solution escape early
-        if(self.goalflag):
+        if(self.goalFlag):
             return self.goalFlag
         #if we have explored all there is within the frontier return false
         return self.goalFlag
