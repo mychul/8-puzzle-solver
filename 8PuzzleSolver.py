@@ -3,6 +3,7 @@ from Problems import *
 from Node import *
 from Misplaced import *
 from Eucledian import *
+from Uniform import *
 pad = [0,0,0]
 
 print("Welcome to 861126014 & 861199635 8 puzzle solver.")    
@@ -52,9 +53,14 @@ elif choice == 2:
 choice = input("\nEnter your choice of algorithm\n1 - Uniform Cost Search\n2- A* with the Misplaced Tile heuristic.\n3 - A* with the Eucledian distance heuristic.\n\nChoice: ")
 choice = int(choice)
 initial_node = node(pad)
+if choice == 1:
+    uni = Uniform(initial_node)
+    flag = uni.Search()
+    if flag:
+        uni.goalReached()
 if(choice == 3):
     asdf = Eucledian(initial_node)
-    print(asdf.eucledian_distance(initial_node))
+
 
 #initial_problem = problems(pad) 
 #initial_problem.printState()

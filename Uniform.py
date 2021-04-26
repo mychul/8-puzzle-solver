@@ -11,6 +11,7 @@ class Uniform(Heurisitic):
         #putting our initial node onto frontier
         self.frontier.put((self.f, self.nodeCounter, self.cur))
         self.frontier_list.append((self.cur.convertState(),self.f))
+        self.checkMax(len(self.frontier))
         #run till frontier is empty
         while not self.frontier.empty():
             #get a node from frontier
@@ -34,9 +35,9 @@ class Uniform(Heurisitic):
                 #check if node state and f value pairing exist within the explored region
                 if self.checkSet(self.cur.leftChild) is False:
                     if self.checkFrontier(self.cur.leftChild) is False:
-                        self.addFrontier(self.cur.leftChild) 
+                        self.addFrontier(self.cur.leftChild)
+                        self.checkMax(len(self.frontier)) 
                     
-
             if self.cur.rightChild is not None:
                 if(self.cur.rightChild.checkGoal()):
                     self.cur = self.cur.rightChild
@@ -48,6 +49,7 @@ class Uniform(Heurisitic):
                 if self.checkSet(self.cur.rightChild) is False:
                     if self.checkFrontier(self.cur.rightChild) is False:
                         self.addFrontier(self.cur.rightChild)
+                        self.checkMax(len(self.frontier))
 
             if self.cur.aboveChild is not None:
                 if(self.cur.aboveChild.checkGoal()):
@@ -60,6 +62,7 @@ class Uniform(Heurisitic):
                 if self.checkSet(self.cur.aboveChild) is False:
                     if self.checkFrontier(self.cur.aboveChild) is False:
                         self.addFrontier(self.cur.aboveChild)
+                        self.checkMax(len(self.frontier))
 
             if self.cur.belowChild is not None:
                 if(self.cur.belowChild.checkGoal()):
@@ -72,6 +75,7 @@ class Uniform(Heurisitic):
                 if self.checkSet(self.cur.belowChild) is False:
                     if self.checkFrontier(self.cur.belowChild) is False:
                         self.addFrontier(self.cur.belowChild)
+                        self.checkMax(len(self.frontier))
             self.addExplored(self.cur) 
 
         #if we have found the solution escape early
