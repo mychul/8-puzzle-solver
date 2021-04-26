@@ -58,8 +58,22 @@ if choice == 1:
     flag = uni.Search()
     if flag:
         uni.goalReached()
+    else:
+        print("Unsolvable")
+if choice == 2:
+    mis = Misplaced(initial_node)
+    flag = mis.Search()
+    if flag:
+        mis.goalReached()
+    else:
+        print("Unsolvable")
 if(choice == 3):
-    asdf = Eucledian(initial_node)
+    euc = Eucledian(initial_node)
+    flag = euc.Search()
+    if flag:
+        euc.goalReached()
+    else:
+        print("Unsolvable")
 
 
 #initial_problem = problems(pad) 

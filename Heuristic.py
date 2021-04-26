@@ -51,7 +51,7 @@ class Heuristic:
     def checkMax(self,curr_size):
         if len(curr_size) > self.max_size:
             self.maxsize = len(curr_size)
-        return
+
 
     #helper function that traces route to solution node and saves into a list        
     def traceSolution(self):
@@ -72,5 +72,5 @@ class Heuristic:
                 print (path[x])
         elif path is None:
             print ("The given state was the goal state.")
-        print ("To solve this problem the serach algorithm expanded " + self.expanded + " nodes.")
+        print ("To solve this problem the search algorithm expanded " + self.expanded + " nodes.")
         print ("The maximum number of nodes at any one time was: " + self.max_size)
