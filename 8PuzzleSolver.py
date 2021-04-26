@@ -53,7 +53,9 @@ elif choice == 2:
 choice = input("\nEnter your choice of algorithm\n1 - Uniform Cost Search\n2- A* with the Misplaced Tile heuristic.\n3 - A* with the Eucledian distance heuristic.\n\nChoice: ")
 choice = int(choice)
 initial_node = node(pad)
+initial_node.printState()
 if choice == 1:
+    print("before algo")
     uni = Uniform(initial_node)
     flag = uni.Search()
     if flag:
@@ -62,14 +64,14 @@ if choice == 1:
         print("Unsolvable")
 if choice == 2:
     mis = Misplaced(initial_node)
-    flag = mis.Search()
+    flag = mis.AStarSearch()
     if flag:
         mis.goalReached()
     else:
         print("Unsolvable")
 if(choice == 3):
     euc = Eucledian(initial_node)
-    flag = euc.Search()
+    flag = euc.AStarSearch()
     if flag:
         euc.goalReached()
     else:

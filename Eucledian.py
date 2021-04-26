@@ -57,7 +57,7 @@ class Eucledian(Heuristic):
         #putting our initial node onto frontier
         self.frontier.put((self.f, self.nodeCounter, self.cur))
         self.frontier_list.append((self.cur.convertState(),self.f))
-        self.checkMax(len(self.frontier))
+        self.checkMax(self.frontier.qsize())
         #run till frontier is empty
         while not self.frontier.empty():
             #get a node from frontier
@@ -82,7 +82,8 @@ class Eucledian(Heuristic):
                 if self.checkSet(self.cur.leftChild) is False:
                     if self.checkFrontier(self.cur.leftChild) is False:
                         self.addFrontier(self.cur.leftChild) 
-                        self.checkMax(len(self.frontier))
+                        self.checkMax(self.frontier.qsize())
+                        self.expand(self.cur.leftChild.g,h,self.cur.leftChild)
                     
 
             if self.cur.rightChild is not None:
@@ -96,7 +97,8 @@ class Eucledian(Heuristic):
                 if self.checkSet(self.cur.rightChild) is False:
                     if self.checkFrontier(self.cur.rightChild) is False:
                         self.addFrontier(self.cur.rightChild)
-                        self.checkMax(len(self.frontier))
+                        self.checkMax(self.frontier.qsize())
+                        self.expand(self.cur.rightChild.g,h,self.cur.rightChild)
 
             if self.cur.aboveChild is not None:
                 if(self.cur.aboveChild.checkGoal()):
@@ -109,7 +111,8 @@ class Eucledian(Heuristic):
                 if self.checkSet(self.cur.aboveChild) is False:
                     if self.checkFrontier(self.cur.aboveChild) is False:
                         self.addFrontier(self.cur.aboveChild)
-                        self.checkMax(len(self.frontier))
+                        self.checkMax(self.frontier.qsize())
+                        self.expand(self.cur.aboveChild.g,h,self.cur.aboveChild)
 
             if self.cur.belowChild is not None:
                 if(self.cur.belowChild.checkGoal()):
@@ -122,7 +125,8 @@ class Eucledian(Heuristic):
                 if self.checkSet(self.cur.belowChild) is False:
                     if self.checkFrontier(self.cur.belowChild) is False:
                         self.addFrontier(self.cur.belowChild)
-                        self.checkMax(len(self.frontier))
+                        self.checkMax(self.frontier.qsize())
+                        self.expand(self.cur.belowChild.g,h,self.cur.belowChild)
             self.addExplored(self.cur) 
 
         #if we have found the solution escape early

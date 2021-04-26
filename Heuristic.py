@@ -5,7 +5,7 @@ class Heuristic:
 
     def __init__(self,node):
         self.cur = node
-        self.explored = {}
+        self.explored = {None}
         self.expanded=0
         self.max_size=0
         self.nodeCounter=0
@@ -16,11 +16,12 @@ class Heuristic:
         self.frontier_list=[]
         if self.cur.checkGoal():
             self.goalReached()
+        self.counter=0
 
     #helper function to help print steps in between    
-    def expand(self,g,h):
-        print("The best state to expand with g(n) = " + g + " and h(n) = " + h + " is...")
-        self.cur.printState()
+    def expand(self,g,h,node):
+        print("The best state to expand with g(n) = " + str(g) + " and h(n) = " + str(h) + " is...")
+        node.printState()
         print("Expanding this node...")
 
     def checkFrontier(self,node):
@@ -49,14 +50,14 @@ class Heuristic:
 
     #helper function to display max amount of nodes
     def checkMax(self,curr_size):
-        if len(curr_size) > self.max_size:
-            self.maxsize = len(curr_size)
+        if curr_size > self.max_size:
+            self.maxsize = curr_size
 
 
     #helper function that traces route to solution node and saves into a list        
     def traceSolution(self):
         solution=[]
-        while (self.cur.spawnMethond is not None):
+        while (self.cur.spawnMethod is not None):
             solution.add(node.spawnMethod)
             self.cur = self.cur.parent
 
@@ -64,7 +65,7 @@ class Heuristic:
 
     #Results routine: Print path, print number of nodes expanded, print max nodes
     def goalReached(self):
-        path = self.traceSolution(self.cur)
+        path = self.traceSolution()
         if path is not None:
             path.reverse()
             self.expanded = len(path)
@@ -72,5 +73,5 @@ class Heuristic:
                 print (path[x])
         elif path is None:
             print ("The given state was the goal state.")
-        print ("To solve this problem the search algorithm expanded " + self.expanded + " nodes.")
-        print ("The maximum number of nodes at any one time was: " + self.max_size)
+        print ("To solve this problem the search algorithm expanded " + str(self.expanded) + " nodes.")
+        print ("The maximum number of nodes at any one time was: " + str(self.max_size))
