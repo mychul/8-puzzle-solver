@@ -11,6 +11,7 @@ class node(problems):
         self.leftChild = None
         self.spawnMethod= None
         self.g = 0
+        self.h = 0
     def setParent(self,p):
         #DEBGU
         #print("DEBUGU")
