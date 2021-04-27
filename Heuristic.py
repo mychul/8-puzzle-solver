@@ -77,5 +77,5 @@ class Heuristic:
                 print (x)
         elif not path:
             print ("The given state was the goal state.")
-        print ("To solve this problem the search algorithm expanded " + str(self.expanded) + " nodes.")
+        print ("To solve this problem the search algorithm expanded " + str(self.expanded) + " nodes, including the intial state.")
         print ("The maximum number of nodes at any one time was: " + str(self.maxsize))
